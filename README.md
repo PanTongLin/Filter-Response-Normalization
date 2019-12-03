@@ -1,4 +1,4 @@
-# Filter_Response_Norm
+# Filter Response Normalization
 A Pytorch implementation of the "Filter Response Normalization Layer: Eliminating Batch Dependence in the Training of Deep Neural Networks"
 [paper](https://arxiv.org/abs/1911.09737)
 
