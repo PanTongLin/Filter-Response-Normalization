@@ -30,11 +30,11 @@ class FilterResponseNorm(nn.Module):
         nu2 = torch.mean(input.pow(2), (2, 3), keepdim=True)
 
         out = input * torch.rsqrt(nu2 + abs(self.eps))
-        weight = self.weight.unsqueeze(1).unsqueeze(2).expand_as(out)
-        bias = self.bias.unsqueeze(1).unsqueeze(2).expand_as(out)
+        weight = self.weight[..., None, None]
+        bias = self.bias[..., None, None]
         # Return after applying the Offset-ReLU non-linearity
         if self.use_TLU:
-            tau = self.tau.unsqueeze(1).unsqueeze(2).expand_as(out)
+            tau = self.tau[..., None, None]
             return torch.max(weight*out + bias, tau)
         else:
             return self.gamma*out + self.bias
