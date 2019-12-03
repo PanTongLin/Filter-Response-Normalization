@@ -50,7 +50,7 @@ class FilterResponseNorm(nn.Module):
             self.running_var = (1-exponential_average_factor) * \
                 self.running_var + exponential_average_factor*nu2
 
-        out = input * torch.rsqrt(self.running_var + torch.abs(self.eps))
+        out = input * torch.rsqrt(self.running_var + abs(self.eps))
         # Return after applying the Offset-ReLU non-linearity
         if self.use_TLU:
             return torch.max(self.weight*out + self.bias, self.tau)
